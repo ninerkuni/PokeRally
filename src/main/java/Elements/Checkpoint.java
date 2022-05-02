@@ -19,7 +19,7 @@ public class Checkpoint extends Element{
 			robot.setScore(robot.getScore()+10);
 			robot.setCheckCount(robot.getCheckCount()+1);
 		}
-		else if (robot.getCheckCount() > ID) {
+		else {
 			robot.setScore(robot.getScore()+5);
 		}
 	}

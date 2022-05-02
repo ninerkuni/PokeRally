@@ -10,7 +10,7 @@ import java.util.Objects;
 
 public class Tile {
     static public JLabel tile(String element) throws IOException {
-        String path = "src/main/";
+        String path = "src/main/resources/";
         BufferedImage Picture;
         if (Objects.equals(element, "Robot1_0")) {
             Picture = ImageIO.read(new File(path+"Cards/ASH_N.png"));

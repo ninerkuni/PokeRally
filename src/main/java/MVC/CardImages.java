@@ -11,7 +11,7 @@ public class CardImages {
     //static method to match the card signatures to the .png images
     static public ImageIcon card(String image) throws IOException{
         //exception is handled in the user interface
-        String path = "src/main/Cards/";
+        String path = "src/main/resources/Cards/";
         BufferedImage Picture = null;
         if (Objects.equals(image, "move1Forward")) {
                 Picture = ImageIO.read(new File(path + "FORWARD.png"));
