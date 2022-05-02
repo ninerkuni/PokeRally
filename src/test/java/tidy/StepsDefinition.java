@@ -1,31 +1,25 @@
 package tidy;
 
 import Board.Board;
-import Elements.Robot;
-import Elements.Coordinates;
-import Elements.Element;
-import Elements.Conveyer;
-import Elements.Pit;
-import Elements.Checkpoint;
-import Elements.Gear;
-import LoadSave.SaveGame;
-import LoadSave.LoadGame;
-import Gameplay.GameStart;
-import Player.Hand;
-import Elements.Trampoline;
-import Player.Deck;
-import Player.Card;
-import Gameplay.Game;
-import Elements.Obstacle;
-import Player.Player;
 import Board.ObstacleFactory;
+import Elements.*;
+import Gameplay.Game;
+import Gameplay.GameStart;
+import LoadSave.LoadGame;
+import LoadSave.SaveGame;
+import Player.Card;
+import Player.Deck;
+import Player.Hand;
+import Player.Player;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -73,7 +67,7 @@ public class StepsDefinition {
 
     @Then("automaton create one robots")
     public void automaton_create_one_robots() {
-        assertEquals((int) b.getNumRobots(),1);
+        assertEquals(b.getNumRobots(),1);
     }
 
     // step definitions for robot
@@ -97,7 +91,7 @@ public class StepsDefinition {
 
     @Given("the names are set {string} {string}")
     public void the_names_are_set(String string, String string2) {
-        if(string2 == "--") {
+        if(string2.equals("--")) {
             gamestart.addName(string);
         } else {
             gamestart.addName(string);
@@ -111,7 +105,7 @@ public class StepsDefinition {
     }
     @Then("robot names are {string} {string}")
     public void robot_names_are(String string, String string2) {
-        if(string2 == "--") {
+        if(string2.equals("--")) {
             assertEquals(string, gamestart.getRobotNames().get(0));
         } else {
             assertEquals(string, gamestart.getRobotNames().get(0));
@@ -207,6 +201,7 @@ public class StepsDefinition {
     @Then("robot turned left")
     public void robot_turned_left() {
         fOrientation = robot.getOrientation();
+        System.out.println();
         diff = (4-(fOrientation-iOrientation))%4;
         assertEquals(diff,1);
     }
@@ -491,7 +486,8 @@ public class StepsDefinition {
     }
     @Then("robot didnt move")
     public void robot_didnt_move() {
-        assertEquals(initial,robot.getCoordinates());
+        assertEquals(initial.getx(),robot.getCoordinates().getx());
+        assertEquals(initial.gety(),robot.getCoordinates().gety());
     }
 
     //move south from last row
@@ -620,7 +616,7 @@ public class StepsDefinition {
 
 
 
-//card scenarios
+    //card scenarios
     Deck deck;
     int numCards;
     String title;
@@ -665,6 +661,7 @@ public class StepsDefinition {
     public void action_is_added_to_card() {
         actions.add(action);
     }
+
     @When("card is played")
     public void card_is_played() {
         card.play(robot);
@@ -812,7 +809,7 @@ public class StepsDefinition {
     }
 
 
-// player
+    // player
     Hand hand;
     int capacity;
     int spaces;
@@ -896,7 +893,7 @@ public class StepsDefinition {
  */
 
 
-//saving state of game
+    //saving state of game
     SaveGame savingFile;
     int currentOrientation;
     boolean multiplayer;
@@ -1120,7 +1117,7 @@ public class StepsDefinition {
     }
     @Then("there are {int} obstacles on board")
     public void there_are_obstacles_on_board(Integer int1) {
-        assertEquals((int) int1,numObstacles);
+        assertEquals(b.getElements(),numObstacles+numRobots+checkpoints);
     }
 
 
@@ -1168,9 +1165,3 @@ public class StepsDefinition {
 
 
 }
-
-
-
-
-	
-	

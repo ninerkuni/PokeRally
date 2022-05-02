@@ -1,176 +1,182 @@
 package Gameplay;
 
-import java.util.ArrayList;
-
 import Board.Board;
 import Elements.Element;
 import Elements.Robot;
+import Player.Card;
 import Player.Deck;
 import Player.Player;
-import Player.Card;
+
+import java.util.ArrayList;
 
 public class Game {
-	ArrayList<Robot> robots = new ArrayList<Robot>();
-	ArrayList<Player> players = new ArrayList<Player>();
-	private boolean multiplayer;
-	private Board board;
+    public ArrayList<Robot> robots = new ArrayList<Robot>();
+    public ArrayList<Player> players = new ArrayList<Player>();
+    private boolean multiplayer;
+    private Board board;
+    private Player player;
+    private Deck deck;
+    private int round;
 
-	private Player player;
+    private String[] difficulties = {"EASY","MEDIUM","HARD"};
 
-	private Deck deck;
-	
-	private int round;
-	
-	private String[] difficulties = {"EASY","MEDIUM","HARD"};
-	
-	//constructor, initiates deck and draws default cards
-	public Game(){
-		System.out.println("Game initiated");
-		round = 0;
-		deck = new Deck();
-		deck.defaultDeck();
-	}
-	//used in GUI, returns Arraylist of element on the board
-	public ArrayList<Element> getElements() {
-		return board.getElementsOnBoard();
-	}
+    //constructor instantiates Deck
+    public Game(){
+        System.out.println("Game initiated");
+        round = 0;
+        deck = new Deck();
+        deck.defaultDeck();
+    }
 
-	//used in GUI, returnsArraylist of element on the board
-	public ArrayList<Robot> getRobots() {
-		return robots;
-	}
-	//used in GUI, used to return true to signal the GUI that it is done
-	public boolean isFinished() {
-		return robots.stream().anyMatch(o -> o.winner()==true);
-	}
+    //returns arrayList of the elements on the board
+    public ArrayList<Element> getElements() {
+        return board.getElementsOnBoard();
+    }
+
+    //check whether a robot has incremented its checkcounter to match number of checkpoints
+    public boolean isFinished() {
+        return robots.stream().anyMatch(o -> o.winner()==true);
+    }
+
+    //adds robots to arrayList robots
+    public void addRobot(Robot robot) {
+        robots.add(robot);
+    }
+
+    //sets boolean that determines if its multiplayer or singlePlayer
+    public void setMultiplayer(boolean b) {
+        multiplayer = b;
+    }
+
+    public String[] getDifficulties() {
+        return difficulties;
+    }
+
+    //Returns the board, used in save game
+    public Board getBoard() {
+        return board;
+    }
+
+    //method sets the reference to the board to variable board
+    public void setBoard(Board b) {
+        board = b;
+    }
 
 
-	//used in GUI, takes in the boolean, that
-	public void setMultiplayer(boolean b) {
-		multiplayer = b;
-		
-	}
-	//get multiplayer for loaded game
-	public boolean getMultiplayer(){
-		return multiplayer;
-	}
+    public int getBoardDimensions() {
+        return board.getDimensions();
+    }
 
-	//returns a string List of difficulties
-	public String[] getDifficulties() {
-		return difficulties;
-	}
 
-	//Used to save the game, after game has been played
-	public Board getBoard() {
-		return board;
-	}
+    //determines the activePlayer, changes the reference for the correct player
+    public Player activePlayer(){
+        if(multiplayer) {
+            return players.get(round % 2);
+        }
+        else {
+            return players.get(0);
+        }
+    }
 
-	//used to set the board from GameStart and LoadGame
-	public void setBoard(Board b) {
-		board = b;
-	}
+    //returns the string of cards, and fills the hand if empty
+    public String[] getCards() {
+        player = activePlayer();
+        if(player.emptyHand()){
+            player.fillHand(deck);
+            return player.getTitles();
+        }
+        else{
+            return player.getTitles();
+        }
+    }
 
-	//used in GUI to print the dimensions
-	public int getBoardDimensions() {
-		return board.getDimensions();
-	}
-	
-	//Used to keep track player turn
-	public Player activePlayer(){
-		if(multiplayer) {
-			return players.get(round % 2);
-		}
-		else {
-			return players.get(0);
-		}
-	}
-	//prints the card for the robot
-	public String[] getCards() {
-		player = activePlayer();
-		if(player.emptyHand()){
-				player.fillHand(deck);
-//				player.printHand();
-				return player.getTitles();
-			}
-		else{
-//			player.printHand();
-			return player.getTitles();
-			}
-	}
+    //adds the object player to ArrayList player
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
 
-	public void addPlayer(Player player) {
-		players.add(player);
-	}
-	
-	//draws the card for the robot
-	public void drawCards() {
-		player = activePlayer();
-		player.fillHand(deck);
-	}
-	
-	//Order the cards of the robot, returns integer to check, return 0 if the card exists, it should exist
-	public int setCardToPosition(String title, int position) {
-		player = activePlayer();
-		Card c = player.getHand().findCard(title);
-		if(c != null){
-			player.getHand().setPosition(c,position);
-			return 0;
-		}
-		else return 1;
-	}
+    //fills hand with random cards
+    public void drawCards() {
+        player = activePlayer();
+        player.fillHand(deck);
+    }
 
-	public void addRobot(Robot robot) {
-		robots.add(robot);
-	}
-	public Player getPlayer() {
-		return activePlayer();
-	}
-	
-	//check whether the cards are ordered, return true or false, doesn't allow to play cards if hand isn't ordered
-	public boolean isOrdered() {
-		player = activePlayer();
-		return player.getHand().isOrdered();
-	}
+    //method finds the card associated with the string title and gives it a position at index i
+    public int setCardToPosition(String title, int position) {
+        player = activePlayer();
+        Card c = player.getHand().findCard(title);
+        if(c != null){
+            player.getHand().setPosition(c,position);
+            return 0;
+        }
+        else return 1;
+    }
 
-	//plays the cards, returns card that is played
-	public String playCard() {
-		player = activePlayer();
-		return player.play();
-	}
-	//increments the round variable
-	public void nextRound() {
-		round++;
-	}
+    //checks if the player has ordered their hand, used for testing
+    public boolean isOrdered() {
+        player = activePlayer();
+        return player.getHand().isOrdered();
+    }
 
-	//return the score of the player/robot
-	public int getActiveScore() {
-		return activePlayer().getScore();
-	}
+    //player begins the process of playing a card by callid the method play() from player
+    public String playCard() {
+        player = activePlayer();
+        return player.play();
+    }
 
-	//returns the robots checkcounter
-	public int getActiveCheckpoints() {
-		return activePlayer().getCheckpoints();
-	}
-	
-	//add robot to ArrayList Robots
-	public void addRobots() {
-		for(Player player : players){
-			robots.add(player.getRobot());
-		}
-	}
+    //increments the round number
+    public void nextRound() {
+        round++;
+    }
 
-	//Used in GUI to print the winner
-	public String getWinner() {
-		for(Robot r : robots){
-			if(r.winner()){
-				return r.getName();
-			}
-		}
-		return null;
-	}
+    public String getTurn() {
+        return ""+(round%2 + 1);
+    }
 
-	//used in GUI to return the round integer
-	public int getRound() {
-		return round;
-	}
+    //returns the score of the active player
+    public int getActiveScore() {
+        return activePlayer().getScore();
+    }
+
+    //returns the checkcounter for the given player
+    public int getActiveCheckpoints() {
+        return activePlayer().getCheckpoints();
+    }
+
+    //adds robots from player to ArrayList robots
+    public void addRobots() {
+        for(Player player : players){
+            robots.add(player.getRobot());
+        }
+    }
+
+    //returns the winner of the game, Used by GUI
+    public String getWinner() {
+        for(Robot r : robots){
+            if(r.winner()){
+                return r.getName();
+            }
+        }
+        return null;
+    }
+
+    public int getRound() {
+        return round;
+    }
+
+
+    //returns the active player, used for testing
+    public Player getPlayer() {
+        return activePlayer();
+    }
+
+    //returns the boolean of multiplayer
+    public boolean getMultiplayer(){
+        return multiplayer;
+    }
+
+    //return list of robots
+    public ArrayList<Robot> getRobots() {
+        return robots;
+    }
 }
