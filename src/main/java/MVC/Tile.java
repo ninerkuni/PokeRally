@@ -13,76 +13,76 @@ public class Tile {
         String path = "src/main/";
         BufferedImage Picture;
         if (Objects.equals(element, "Robot1_0")) {
-            Picture = ImageIO.read(new File(path+"resources/Cards/ASH_N.png"));
+            Picture = ImageIO.read(new File(path+"Cards/ASH_N.png"));
             return new JLabel(new ImageIcon(Picture));
         }
         if (Objects.equals(element, "Robot1_2")) {
-            Picture = ImageIO.read(new File(path+"resources/Cards/ASH_S.png"));
+            Picture = ImageIO.read(new File(path+"Cards/ASH_S.png"));
             return new JLabel(new ImageIcon(Picture));
 
         }
         if (Objects.equals(element, "Robot1_1")) {
-            Picture = ImageIO.read(new File(path+"resources/Cards/ASH_E.png"));
+            Picture = ImageIO.read(new File(path+"Cards/ASH_E.png"));
             return new JLabel(new ImageIcon(Picture));
 
         }
         if (Objects.equals(element, "Robot1_3")) {
 
-            Picture = ImageIO.read(new File(path+"resources/Cards/ASH_W.png"));
+            Picture = ImageIO.read(new File(path+"Cards/ASH_W.png"));
             return new JLabel(new ImageIcon(Picture));
         }
         if (Objects.equals(element, "Robot2_0")) {
 
-            Picture = ImageIO.read(new File(path+"resources/Cards/TEAM_ROCKET_N.png"));
+            Picture = ImageIO.read(new File(path+"Cards/TEAM_ROCKET_N.png"));
             return new JLabel(new ImageIcon(Picture));
 
         }
         if (Objects.equals(element, "Robot2_1")) {
 
-            Picture = ImageIO.read(new File(path+"resources/Cards/TEAM_ROCKET_E.png"));
+            Picture = ImageIO.read(new File(path+"Cards/TEAM_ROCKET_E.png"));
             return new JLabel(new ImageIcon(Picture));
 
         }
         if (Objects.equals(element, "Robot2_2")) {
 
-            Picture = ImageIO.read(new File(path+"resources/Cards/TEAM_ROCKET_S.png"));
+            Picture = ImageIO.read(new File(path+"Cards/TEAM_ROCKET_S.png"));
             return new JLabel(new ImageIcon(Picture));
 
         }
         if (Objects.equals(element, "Robot2_3")) {
 
-            Picture = ImageIO.read(new File(path+"resources/Cards/TEAM_ROCKET_W.png"));
+            Picture = ImageIO.read(new File(path+"Cards/TEAM_ROCKET_W.png"));
             return new JLabel(new ImageIcon(Picture));
 
         }
 
         if (Objects.equals(element, "Trampoline")) {
 
-            Picture = ImageIO.read(new File(path+"resources/Cards/SPOINK.png"));
+            Picture = ImageIO.read(new File(path+"Cards/SPOINK.png"));
             return new JLabel(new ImageIcon(Picture));
 
         }
         if (Objects.equals(element, "Conveyor")) {
 
-            Picture = ImageIO.read(new File(path+"resources/Cards/SNORLAX.png"));
+            Picture = ImageIO.read(new File(path+"Cards/SNORLAX.png"));
             return new JLabel(new ImageIcon(Picture));
 
         }
         if (Objects.equals(element, "Pit")) {
 
-            Picture = ImageIO.read(new File(path+"resources/Cards/POND.png"));
+            Picture = ImageIO.read(new File(path+"Cards/POND.png"));
             return new JLabel(new ImageIcon(Picture));
 
         }
         if (Objects.equals(element, "Gear")) {
 
-            Picture = ImageIO.read(new File(path+"resources/Cards/PSYDUCK.png"));
+            Picture = ImageIO.read(new File(path+"Cards/PSYDUCK.png"));
             return new JLabel(new ImageIcon(Picture));
 
         }
         if (Objects.equals(element, "Checkpoint1")) {
 
-            Picture = ImageIO.read(new File(path+"resources/Cards/CHECKPOINT.png"));
+            Picture = ImageIO.read(new File(path+"Cards/CHECKPOINT.png"));
             JLabel Checkpoint1 = new JLabel(new ImageIcon(Picture));
             Checkpoint1.setText("1");
             Checkpoint1.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -94,7 +94,7 @@ public class Tile {
         }
         if (Objects.equals(element, "Checkpoint2")) {
 
-            Picture = ImageIO.read(new File(path+"resources/Cards/CHECKPOINT.png"));
+            Picture = ImageIO.read(new File(path+"Cards/CHECKPOINT.png"));
             JLabel Checkpoint2 = new JLabel(new ImageIcon(Picture));
             Checkpoint2.setText("2");
             Checkpoint2.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -105,7 +105,7 @@ public class Tile {
         }
         if (Objects.equals(element, "Checkpoint3")) {
 
-            Picture = ImageIO.read(new File(path+"resources/Cards/CHECKPOINT.png"));
+            Picture = ImageIO.read(new File(path+"Cards/CHECKPOINT.png"));
             JLabel Checkpoint3 = new JLabel(new ImageIcon(Picture));
             Checkpoint3.setText("3");
             Checkpoint3.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -117,7 +117,7 @@ public class Tile {
 
         if (Objects.equals(element, "Checkpoint4")) {
 
-            Picture = ImageIO.read(new File(path+"resources/Cards/CHECKPOINT.png"));
+            Picture = ImageIO.read(new File(path+"Cards/CHECKPOINT.png"));
             JLabel Checkpoint4 = new JLabel(new ImageIcon(Picture));
             Checkpoint4.setText("4");
             Checkpoint4.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -129,36 +129,36 @@ public class Tile {
 
         else if(element != null){
             if(element.contains("Robot1_0")){
-                Picture = ImageIO.read(new File(path+"resources/Cards/CL_ASH_N.png"));
+                Picture = ImageIO.read(new File(path+"Cards/CL_ASH_N.png"));
             }
             else if(element.contains("Robot1_1")){
-                Picture = ImageIO.read(new File(path+"resources/Cards/CL_ASH_E.png"));
+                Picture = ImageIO.read(new File(path+"Cards/CL_ASH_E.png"));
             }
             else if(element.contains("Robot1_2")){
-                Picture = ImageIO.read(new File(path+"resources/Cards/CL_ASH_S.png"));
+                Picture = ImageIO.read(new File(path+"Cards/CL_ASH_S.png"));
             }
             else if(element.contains("Robot1_3")){
-                Picture = ImageIO.read(new File(path+"resources/Cards/CL_ASH_W.png"));
+                Picture = ImageIO.read(new File(path+"Cards/CL_ASH_W.png"));
             }
             else if(element.contains("Robot2_0")){
-                Picture = ImageIO.read(new File(path+"resources/Cards/CLASH_TEAM_ROCKET_N.png"));
+                Picture = ImageIO.read(new File(path+"Cards/CLASH_TEAM_ROCKET_N.png"));
             }
             else if(element.contains("Robot2_1")){
-                Picture = ImageIO.read(new File(path+"resources/Cards/CLASH_TEAM_ROCKET_E.png"));
+                Picture = ImageIO.read(new File(path+"Cards/CLASH_TEAM_ROCKET_E.png"));
             }
             else if(element.contains("Robot2_2")){
-                Picture = ImageIO.read(new File(path+"resources/Cards/CLASH_TEAM_ROCKET_S.png"));
+                Picture = ImageIO.read(new File(path+"Cards/CLASH_TEAM_ROCKET_S.png"));
             }
             else if(element.contains("Robot2_3")){
-                Picture = ImageIO.read(new File(path+"resources/Cards/CLASH_TEAM_ROCKET_W.png"));
+                Picture = ImageIO.read(new File(path+"Cards/CLASH_TEAM_ROCKET_W.png"));
             }
-            else Picture = ImageIO.read(new File(path+"resources/Cards/CLASH_TILE.png"));
+            else Picture = ImageIO.read(new File(path+"Cards/CLASH_TILE.png"));
         }
 
 
         else {
 
-            Picture = ImageIO.read(new File(path+"resources/Cards/OPEN_TILE.png"));
+            Picture = ImageIO.read(new File(path+"Cards/OPEN_TILE.png"));
         }
         return new JLabel(new ImageIcon(Picture));
 
